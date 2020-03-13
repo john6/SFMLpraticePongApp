@@ -19,7 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="CollisionHandler.cpp" />
+    <ClCompile Include="Court.cpp" />
+    <ClCompile Include="GameRenderer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Paddle.cpp" />
+    <ClCompile Include="PongGame.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="CollisionHandler.h" />
+    <ClInclude Include="Court.h" />
+    <ClInclude Include="GameRenderer.h" />
+    <ClInclude Include="GAME_STATE.h" />
+    <ClInclude Include="MOUSE_STATE.h" />
+    <ClInclude Include="Paddle.h" />
+    <ClInclude Include="PongGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
