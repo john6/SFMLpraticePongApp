@@ -6,36 +6,35 @@
 
 int main()
 {
-	
+	typedef std::chrono::high_resolution_clock hiResTime;
+	typedef std::chrono::milliseconds ms;
+	typedef std::chrono::high_resolution_clock::time_point time_point;
+	std::cout << "IDK1 \n";
 	PongGame game(10);
 	sf::RenderWindow window(sf::VideoMode(1500, 900), "SFML works!");
-
-	float UPDATE_INTERVAL = 90000000.0f;
-	float lag = 0.0f;
-
-	typedef std::chrono::high_resolution_clock Time;
-	typedef std::chrono::milliseconds ms;
-	typedef std::chrono::duration<float> fsec;
-	auto prevTime = Time::now();
+	time_point prevTime = hiResTime::now();
+	time_point currTime = hiResTime::now();
+	const ms UPDATE_INTERVAL(1);
+	ms lag(0);
 
 	while (window.isOpen())
 	{
-		auto currTime = Time::now();
-		fsec fs = currTime - prevTime;
-		ms d = std::chrono::duration_cast<ms>(fs);
-		lag += d.count();
-		while (lag > UPDATE_INTERVAL) {
+		std::cout << "IDK2 \n";
+		prevTime = currTime;
+		currTime = hiResTime::now();
+		ms currInterval = std::chrono::duration_cast<std::chrono::milliseconds>(currTime - prevTime);
+		lag += currInterval;
+		if (lag > UPDATE_INTERVAL) {
 			sf::Event currEvent;
-			while (window.pollEvent(currEvent))
-			{
-				if (currEvent.type == sf::Event::Closed) { window.close(); }
-			}
+			std::cout << "IDK3 \n";
+			if ((window.pollEvent(currEvent)) && (currEvent.type == sf::Event::Closed)) { window.close(); }
 			game.PollKeys();
 			game.Update(1.0f);
 			game.Render(1.0f, &window);
-			lag -= UPDATE_INTERVAL;
+
+			//lag -= UPDATE_INTERVAL;
+			lag = ms(0);
 		}
 	}
-
 	return 0;
 }

@@ -22,12 +22,30 @@ private:
 	Paddle m_playerTwo;
 	sf::RectangleShape m_upperWall;
 	sf::RectangleShape m_lowerWall;
+	sf::RectangleShape m_p1_goal;
+	sf::RectangleShape m_p2_goal;
+	sf::Font m_font;
+	sf::Text m_p1_score;
+	sf::Text m_p2_score;
+
 	PLAY_STATE m_playState;
+
+	GAME_STATE ScoreP1();
+
+	GAME_STATE ScoreP2();
+
+	GAME_STATE UpdateTowardP1();
+
+	GAME_STATE UpdateTowardP2();
+
+	GAME_STATE ServeP1();
+	
+	GAME_STATE ServeP2();
 
 public:
 	PongGame(int scoreToWin);
 	~PongGame();
-	
+
 	GAME_STATE Update(float elapsedMilliseconds);
 
 	void PollKeys();

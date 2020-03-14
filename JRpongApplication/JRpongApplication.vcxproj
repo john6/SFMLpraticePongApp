@@ -37,6 +37,9 @@
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="PongGame.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="kongtext.ttf" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{D73BA9DC-84A9-4B1D-B052-00794350274E}</ProjectGuid>
