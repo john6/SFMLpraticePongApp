@@ -34,21 +34,25 @@ void Button::SetColorsFromState() {
 		m_positionAndSize.setFillColor(m_colorUp);
 		m_positionAndSize.setOutlineColor(m_colorDown);
 		m_text.setFillColor(m_colorDown);
+		break;
 	}
 	case Button::HOVER: {
 		m_positionAndSize.setFillColor(m_colorHover);
 		m_positionAndSize.setOutlineColor(m_colorDown);
 		m_text.setFillColor(m_colorDown);
+		break;
 	}
 	case Button::DOWN: {
 		m_positionAndSize.setFillColor(m_colorDown);
 		m_positionAndSize.setOutlineColor(m_colorUp);
 		m_text.setFillColor(m_colorUp);
+		break;
 	}
 	default: {
 		m_positionAndSize.setFillColor(m_colorUp);
 		m_positionAndSize.setOutlineColor(m_colorDown);
 		m_text.setFillColor(m_colorDown);
+		break;
 	}
 	}
 }

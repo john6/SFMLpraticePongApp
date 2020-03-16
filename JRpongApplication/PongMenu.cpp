@@ -22,14 +22,31 @@ PongMenu::~PongMenu()
 
 
 
-GAME_STATE PongMenu::PollInput(sf::Vector2i mousePosition) {
-
-	return MENU;
+bool PongMenu::PollInput(sf::Vector2i mousePosition, Button* button) {
+	float halfWidth = (button->GetRect().getSize().x / 2);
+	float halfHeight = (button->GetRect().getSize().y / 2);
+	float distX = abs(mousePosition.x - (button->GetRect().getPosition().x + halfWidth));
+	float distY = abs(mousePosition.y - (button->GetRect().getPosition().y + halfHeight));
+	if ((distX <= halfWidth) && (distY <= halfHeight)) {
+		button->SetState(Button::HOVER);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			button->SetState(Button::DOWN);
+			return true;
+		}
+	}
+	else {
+		button->SetState(Button::UP);
+	}
+	return false;
 }
 
 GAME_STATE PongMenu::Update(float millisecs, sf::RenderWindow* window, sf::Vector2i mousePosition) {
-	GAME_STATE input = PollInput(mousePosition);
-	return MENU;
+	bool playButtonPressed = PollInput(mousePosition, &m_playButton);
+	bool exitButtonPressed = PollInput(mousePosition, &m_exitButton);
+	if (playButtonPressed) {
+		return IN_GAME;
+	}
+	else { return MENU; }
 }
 
 

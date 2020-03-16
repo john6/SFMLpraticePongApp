@@ -1,6 +1,7 @@
 #pragma once
 #include "Button.h"
 #include "GAME_STATE.h"
+#include <algorithm>
 #include <SFML/Graphics.hpp>
 
 class PongMenu
@@ -15,7 +16,7 @@ public:
 	PongMenu();
 	~PongMenu();
 
-	GAME_STATE PollInput(sf::Vector2i mousePosition);
+	bool PollInput(sf::Vector2i mousePosition, Button* button);
 
 	GAME_STATE Update(float millisecs, sf::RenderWindow* window, sf::Vector2i mousePosition);
 

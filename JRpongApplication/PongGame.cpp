@@ -16,10 +16,10 @@ PongGame::PongGame(int scoreToWin)
 	m_lowerWall.setPosition(50, 850);
 	m_p1_goal = sf::RectangleShape(sf::Vector2f(50, 785));
 	m_p1_goal.setPosition(1400, 65);
-	m_p1_goal.setFillColor(sf::Color::Green);
+	m_p1_goal.setFillColor(sf::Color::Black);
 	m_p2_goal = sf::RectangleShape(sf::Vector2f(50, 785));
 	m_p2_goal.setPosition(sf::Vector2f(50, 65));
-	m_p2_goal.setFillColor(sf::Color::Green);
+	m_p2_goal.setFillColor(sf::Color::Black);
 	m_playState = SERVE_PLAYER_ONE;
 	m_p1_score = sf::Text();
 	if (!m_font.loadFromFile("kongtext.ttf")) {
@@ -64,7 +64,6 @@ void PongGame::PollKeys() {
 		m_playerTwo.SetPosition(oldPos);
 	}
 }
-
 
 GAME_STATE PongGame::ScoreP1() {
 	m_ball.~Ball();
@@ -142,10 +141,10 @@ GAME_STATE PongGame::UpdateTowardP1() {
 		m_ball.SetVelocity(bounceVect4);
 	}
 	if (bounceVect5 != sf::Vector2f(0.0f, 0.0f)) {
-		ScoreP1();
+		return ScoreP1();
 	}
 	if (bounceVect6 != sf::Vector2f(0.0f, 0.0f)) {
-		ScoreP2();
+		return ScoreP2();
 	}
 
 	return IN_GAME;
@@ -175,10 +174,10 @@ GAME_STATE PongGame::UpdateTowardP2() {
 		m_ball.SetVelocity(bounceVect4);
 	}
 	if (bounceVect5 != sf::Vector2f(0.0f, 0.0f)) {
-		ScoreP1();
+		return ScoreP1();
 	}
 	if (bounceVect6 != sf::Vector2f(0.0f, 0.0f)) {
-		ScoreP2();
+		return ScoreP2();
 	}
 
 	return IN_GAME;

@@ -4,6 +4,7 @@
 #include <ctime>    
 #include "PongGame.h"
 #include "PongMenu.h"
+#include "GAME_STATE.h"
 
 int main()
 {
@@ -11,8 +12,9 @@ int main()
 	typedef std::chrono::milliseconds ms;
 	typedef std::chrono::high_resolution_clock::time_point time_point;
 	std::cout << "IDK1 \n";
-	PongGame game(4);
+	PongGame game(5);
 	PongMenu menu = PongMenu();
+	GAME_STATE state = MENU;
 	sf::RenderWindow window(sf::VideoMode(1500, 900), "SFML works!");
 	time_point prevTime = hiResTime::now();
 	time_point currTime = hiResTime::now();
@@ -30,13 +32,21 @@ int main()
 			sf::Event currEvent;
 			std::cout << "IDK3 \n";
 			if ((window.pollEvent(currEvent)) && (currEvent.type == sf::Event::Closed)) { window.close(); }
-			
-			//game.PollKeys();
-			//game.Update(1.0f);
-			//game.Render(1.0f, &window);
-			sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-			menu.Update(1.0f, &window, mousePosition);
-			menu.Render(1.0f, &window);
+
+			switch (state) {
+			case MENU: {
+				sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+				state = menu.Update(1.0f, &window, mousePosition);
+				menu.Render(1.0f, &window);
+				break;
+			}
+			case IN_GAME: {
+				game.PollKeys();
+				state = game.Update(1.0f);
+				game.Render(1.0f, &window);
+				break;
+			}
+			}
 			lag -= UPDATE_INTERVAL;
 			lag = ms(0);
 		}
