@@ -20,15 +20,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="CollisionHandler.cpp" />
     <ClCompile Include="Court.cpp" />
     <ClCompile Include="GameRenderer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="PongGame.cpp" />
+    <ClCompile Include="PongMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="CollisionHandler.h" />
     <ClInclude Include="Court.h" />
     <ClInclude Include="GameRenderer.h" />
@@ -36,6 +39,7 @@
     <ClInclude Include="MOUSE_STATE.h" />
     <ClInclude Include="Paddle.h" />
     <ClInclude Include="PongGame.h" />
+    <ClInclude Include="PongMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="kongtext.ttf" />

@@ -3,6 +3,7 @@
 #include <chrono>
 #include <ctime>    
 #include "PongGame.h"
+#include "PongMenu.h"
 
 int main()
 {
@@ -10,7 +11,8 @@ int main()
 	typedef std::chrono::milliseconds ms;
 	typedef std::chrono::high_resolution_clock::time_point time_point;
 	std::cout << "IDK1 \n";
-	PongGame game(10);
+	PongGame game(4);
+	PongMenu menu = PongMenu();
 	sf::RenderWindow window(sf::VideoMode(1500, 900), "SFML works!");
 	time_point prevTime = hiResTime::now();
 	time_point currTime = hiResTime::now();
@@ -28,11 +30,14 @@ int main()
 			sf::Event currEvent;
 			std::cout << "IDK3 \n";
 			if ((window.pollEvent(currEvent)) && (currEvent.type == sf::Event::Closed)) { window.close(); }
-			game.PollKeys();
-			game.Update(1.0f);
-			game.Render(1.0f, &window);
-
-			//lag -= UPDATE_INTERVAL;
+			
+			//game.PollKeys();
+			//game.Update(1.0f);
+			//game.Render(1.0f, &window);
+			sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+			menu.Update(1.0f, &window, mousePosition);
+			menu.Render(1.0f, &window);
+			lag -= UPDATE_INTERVAL;
 			lag = ms(0);
 		}
 	}
