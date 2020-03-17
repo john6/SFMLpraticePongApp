@@ -9,23 +9,21 @@ Button::Button(std::string string, sf::RectangleShape positionAndSize) {
 }
 
 Button::~Button() {
-
 }
 
-sf::RectangleShape Button::GetRect() {
-	return m_positionAndSize;
-}
+sf::RectangleShape Button::GetRect() { return m_positionAndSize; }
 
-sf::Text Button::GetText() {
-	return m_text;
+sf::Text Button::GetText() { return m_text; }
+
+Button::BUTTON_STATE Button::GetState() {
+	return m_state;
 }
 
 void Button::SetText(std::string s) {
 	m_text.setString(s);
 	m_text.setCharacterSize(m_positionAndSize.getSize().x / 10.0f);
-	//m_text.setPosition(m_positionAndSize.getPosition());
-	//m_text.setPosition(sf::Vector2f(m_positionAndSize.getPosition().x, m_positionAndSize.getPosition().y));
-	m_text.setPosition(sf::Vector2f(m_positionAndSize.getPosition().x + (m_positionAndSize.getSize().x / 3.0f), m_positionAndSize.getPosition().y + (m_positionAndSize.getSize().y / 3.0f)));
+	m_text.setPosition(sf::Vector2f(m_positionAndSize.getPosition().x + (m_positionAndSize.getSize().x / 3.0f),
+		m_positionAndSize.getPosition().y + (m_positionAndSize.getSize().y / 3.0f)));
 }
 
 void Button::SetColorsFromState() {
@@ -62,20 +60,9 @@ void Button::SetPositionAndSize(sf::RectangleShape rect) {
 	m_positionAndSize.setOutlineThickness(rect.getSize().x / 30);
 }
 
-void Button::SetSize(sf::Vector2f size) {
-	m_positionAndSize.setSize(size);
-}
+void Button::SetSize(sf::Vector2f size) { m_positionAndSize.setSize(size); }
 
-void Button::SetPosition(sf::Vector2f position) {
-	m_positionAndSize.setPosition(position);
-}
-
-bool Button::HandleInput(sf::Vector2f mousePosition, bool mouseState) {
-	if (true) {
-		return true;
-	}
-	return false;
-}
+void Button::SetPosition(sf::Vector2f position) { m_positionAndSize.setPosition(position); }
 
 void Button::SetColors(sf::Color colorUp, sf::Color colorDown, sf::Color colorHover) {
 	m_colorUp = colorUp;
@@ -84,11 +71,14 @@ void Button::SetColors(sf::Color colorUp, sf::Color colorDown, sf::Color colorHo
 	SetColorsFromState();
 }
 
-Button::BUTTON_STATE Button::GetState() {
-	return m_state;
-}
-
 void Button::SetState(BUTTON_STATE state) {
 	m_state = state;
 	SetColorsFromState();
+}
+
+bool Button::HandleInput(sf::Vector2f mousePosition, bool mouseState) {
+	if (true) {
+		return true;
+	}
+	return false;
 }

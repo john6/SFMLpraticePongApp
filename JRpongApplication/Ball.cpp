@@ -1,7 +1,5 @@
 #include "Ball.h"
 
-
-
 Ball::Ball(sf::Vector2f startPos, float radius)
 {
 	m_ball.setRadius(radius);
@@ -33,6 +31,7 @@ void Ball::SetRadius(float pos) {
 void Ball::SetPosition(sf::Vector2f pos) {
 	m_ball.setPosition(pos);
 }
+
 void Ball::SetVelocity(sf::Vector2f vel) {
 	m_velocity = vel;
 }

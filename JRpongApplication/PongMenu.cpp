@@ -1,7 +1,8 @@
 #include "PongMenu.h"
 
-PongMenu::PongMenu()
+PongMenu::PongMenu(sf::Font* font)
 {
+	m_font = font;
 	sf::RectangleShape playButtonRect(sf::Vector2f(800, 250));
 	playButtonRect.setPosition(sf::Vector2f(200, 100));
 	m_playButton = Button("Play", playButtonRect);
@@ -10,17 +11,13 @@ PongMenu::PongMenu()
 	exitButtonRect.setPosition(sf::Vector2f(200, 500));
 	m_exitButton = Button("Exit", exitButtonRect);
 	m_exitButton.SetColors(sf::Color::Black, sf::Color::White, sf::Color(128, 128, 128));
-
 	m_shouldExit = false;
 	m_shouldStart = false;
 }
 
-
 PongMenu::~PongMenu()
 {
 }
-
-
 
 bool PongMenu::PollInput(sf::Vector2i mousePosition, Button* button) {
 	float halfWidth = (button->GetRect().getSize().x / 2);
@@ -46,27 +43,23 @@ GAME_STATE PongMenu::Update(float millisecs, sf::RenderWindow* window, sf::Vecto
 	if (playButtonPressed) {
 		return IN_GAME;
 	}
-	else { return MENU; }
+	else if (exitButtonPressed) {
+		return EXIT_GAME;
+	}
+	else { 
+		return MENU; 
+	}
 }
 
-
-void PongMenu::Render(float elapsedMilliseconds, sf::RenderWindow* window) {
+void PongMenu::Render(sf::RenderWindow* window) {
 	window->clear();
-
 	window->draw(m_playButton.GetRect());
 	window->draw(m_exitButton.GetRect());
-
-	sf::Font font;
-	font.loadFromFile("kongtext.ttf");
-
 	sf::Text play = m_playButton.GetText();
-	play.setFont(font);
+	play.setFont(*m_font);
 	window->draw(play);
-
 	sf::Text exit = m_exitButton.GetText();
-	exit.setFont(font);
+	exit.setFont(*m_font);
 	window->draw(exit);
-
-
 	window->display();
 }

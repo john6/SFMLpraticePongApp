@@ -1,11 +1,11 @@
 #include "Paddle.h"
 
-Paddle::Paddle(sf::RectangleShape rect, sf::Vector2f position) {
+Paddle::Paddle(sf::RectangleShape rect, sf::Vector2f position)
+{
 	m_size = rect;
 	m_size.setFillColor(sf::Color::White);
 	m_position = position;
 }
-
 
 Paddle::~Paddle()
 {

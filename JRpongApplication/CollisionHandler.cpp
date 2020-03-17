@@ -1,6 +1,5 @@
 #include "CollisionHandler.h"
 
-
 sf::Vector2f CollisionHandler::CalculateBounceDir(sf::Vector2f ballDir, sf::Vector2f surfaceDir) {
 	//verticle vector => (0,1) , (0,-1)
 	//horizontal vector => (1,0) , (-1,0)
@@ -10,12 +9,9 @@ sf::Vector2f CollisionHandler::CalculateBounceDir(sf::Vector2f ballDir, sf::Vect
 	return sf::Vector2f(0.0f, 0.0f);
 }
 
-
-
 CollisionHandler::CollisionHandler()
 {
 }
-
 
 CollisionHandler::~CollisionHandler()
 {
@@ -28,7 +24,6 @@ sf::Vector2f CollisionHandler::DetectBallCollision(sf::CircleShape ball, sf::Vec
 	float shapeWidthX = abs(ball.getRadius() + (rectSize.getSize().x / 2));
 	float shapeHeightY = abs(ball.getRadius() + (rectSize.getSize().y / 2));
 	if ((shapeWidthX > distX) && (shapeHeightY > distY)) {
-		//CalculateBounceDir(ballVel, rectSize);
 		if (verticle) {
 			return sf::Vector2f(-ballVel.x, ballVel.y);
 		}
