@@ -22,7 +22,7 @@ PongGame::PongGame(int scoreToWin, sf::Font* font)
 	m_playState = SERVE_PLAYER_ONE;
 	m_p1_score = sf::Text();
 	m_centerLine = sf::RectangleShape(sf::Vector2f(CENTER_LINE_THICKNESS, COURT_WIDTH));
-	m_centerLine.setPosition(sf::Vector2f(COURT_LENGTH/2, VERTICLE_MARGIN + WALL_THICKNESS));
+	m_centerLine.setPosition(sf::Vector2f((COURT_LENGTH/2) + HORIZONTAL_MARGIN, VERTICLE_MARGIN + WALL_THICKNESS));
 
 	m_font = font;
 	m_p1_score.setFont(*m_font);
@@ -38,7 +38,10 @@ PongGame::PongGame(int scoreToWin, sf::Font* font)
 	m_p2_score.setPosition(sf::Vector2f(1335.0f, 0.0f));
 
 
-	if (!bufferBounce.loadFromFile("tone-beep.wav")) {
+	if (!bufferPaddleBounce.loadFromFile("tone-beep.wav")) {
+		std::cerr << "error loading bounce sound \n";
+	}
+	if (!bufferWallBounce.loadFromFile("tone-beep-lower-slower.wav")) {
 		std::cerr << "error loading bounce sound \n";
 	}
 	if (!bufferScore.loadFromFile("sine-octaves-up-beep.wav")) {
@@ -144,19 +147,23 @@ GAME_STATE PongGame::UpdateMoving(float stepSize) {
 	sf::Vector2f bounceVect6 = CollisionHandler::DetectBallCollision(m_ball.GetBall(), m_ball.GetVelocity(), m_p2_goal, m_p2_goal.getPosition(), true);
 
 	if (bounceVect1 != sf::Vector2f(0.0f, 0.0f)) {
-		sound.setBuffer(bufferBounce);
+		sound.setBuffer(bufferPaddleBounce);
 		sound.play();
 		m_ball.SetVelocity(bounceVect1);
 	}
 	if (bounceVect2 != sf::Vector2f(0.0f, 0.0f)) {
-		sound.setBuffer(bufferBounce);
+		sound.setBuffer(bufferPaddleBounce);
 		sound.play();
 		m_ball.SetVelocity(bounceVect2);
 	}
 	if (bounceVect3 != sf::Vector2f(0.0f, 0.0f)) {
+		sound.setBuffer(bufferWallBounce);
+		sound.play();
 		m_ball.SetVelocity(bounceVect3);
 	}
 	if (bounceVect4 != sf::Vector2f(0.0f, 0.0f)) {
+		sound.setBuffer(bufferWallBounce);
+		sound.play();
 		m_ball.SetVelocity(bounceVect4);
 	}
 	if (bounceVect5 != sf::Vector2f(0.0f, 0.0f)) {

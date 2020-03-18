@@ -14,7 +14,8 @@ enum PLAY_STATE { SERVE_PLAYER_ONE, SERVE_PLAYER_TWO, TOWARD_PLAYER_ONE, TOWARD_
 class PongGame
 {
 private:
-	sf::SoundBuffer bufferBounce;
+	sf::SoundBuffer bufferPaddleBounce;
+	sf::SoundBuffer bufferWallBounce;
 	sf::SoundBuffer bufferScore;
 	sf::Sound sound;
 

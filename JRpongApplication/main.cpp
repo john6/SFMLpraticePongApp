@@ -10,7 +10,7 @@
 int main()
 {
 	GAME_STATE state = MENU;
-	sf::RenderWindow window(sf::VideoMode(1500, 900), "SFML works!");
+	sf::RenderWindow window(sf::VideoMode(1500, 900), "PONG");
 	sf::Font font;
 	if (!font.loadFromFile("kongtext.ttf")) {
 		std::cerr << "error loading font \n";
